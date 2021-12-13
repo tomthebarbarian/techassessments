@@ -1,5 +1,5 @@
 const http = require('http');
-// const xml2js = require('xml2js');
+const xml2js = require('xml2js');
 
 const egObj = {
   "Details": {
@@ -38,23 +38,22 @@ const req = http.request(phoneUrl, res => {
   console.log(`statusCode: ${res.statusCode}`);
 
   res.on('data', d => {
-    process.stdout.write(d);
+    // process.stdout.write(d);
+    xml2js.parseString(d, (err, result) => {
+      if (err) {
+        throw err;
+      }
 
-  //   xml2js.parseString(d, (err, result) => {
-  //     if (err) {
-  //       throw err;
-  //     }
+      // `result` is a JavaScript object
+      // convert it to a JSON string
+      // const json = JSON.stringify(result, null, 4);
 
-  //     // `result` is a JavaScript object
-  //     // convert it to a JSON string
-  //     // const json = JSON.stringify(result, null, 4);
-
-  //     // log JSON string
-  //     // console.log(result);
-  //     // console.log(Object.keys(result));
-  //     console.log(result.root.exchangedata[0].state);
-  //   });
-  //   // console.log(JSON.stringify(d,null, 4));
+      // log JSON string
+      // console.log(result);
+      // console.log(Object.keys(result));
+      console.log(result.root.exchangedata[0].state);
+    });
+    // console.log(JSON.stringify(d,null, 4));
   });
 
 });
