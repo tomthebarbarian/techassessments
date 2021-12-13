@@ -1,5 +1,17 @@
 {
   "dependencies": {
     "xml2js": "^0.4.23"
-  }
+  },
+  "name": "getProvince",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
