@@ -33,29 +33,26 @@ const getProvince = () => {
   };
 
   const phoneNum = egObj.Details.ContactData.CustomerEndpoint.Address;
-  const phoneUrl = `http://www.telcodata.us/query/queryexchangexml.html?npa=${phoneNum.substring(2,5)}&nxx=${phoneNum.substring(5,8)}`;
-
+  
+  // const phoneUrl = `http://www.telcodata.us/query/queryexchangexml.html?npa=${phoneNum.substring(2,5)}&nxx=${phoneNum.substring(5,8)}`;
+  // const phoneUrl = `http://www.telcodata.us/query/queryexchangexml.html?npa=226&nxx=600`;
+  const phoneUrl = `http://example.com`;
+  
   const req = http.request(phoneUrl, res => {
     console.log(`statusCode: ${res.statusCode}`);
 
     res.on('data', d => {
-      // process.stdout.write(d);
-      xml2js.parseString(d, (err, result) => {
-        if (err) {
-          throw err;
-        }
+      // xml2js.parseString(d, (err, result) => {
+      //   if (err) {
+      //     throw err;
+      //   }
 
-        // `result` is a JavaScript object
-        // convert it to a JSON string
-        // const json = JSON.stringify(result, null, 4);
+      //   // log JSON string
+      //   console.log(result.root.exchangedata[0].state);
+      //   return(result.root.exchangedata[0].state)
+      // });
 
-        // log JSON string
-        // console.log(result);
-        // console.log(Object.keys(result));
-        console.log(result.root.exchangedata[0].state);
-        return(result.root.exchangedata[0].state)
-      });
-      // console.log(JSON.stringify(d,null, 4));
+      process.stdout.write(d); 
     });
 
   });
